@@ -8,19 +8,18 @@ connection = mysql.connector.connect(
     password='hashemi1378',
     autocommit=True
 )
-
-# 1
-def getAirportByICAO(icao):
-    sql = "SELECT ident, name, iso_country, iso_region, municipality from airport"
-    sql += " WHERE ident='" + icao + "'"
+def getAirportsByCountry(country):
+    sql = "SELECT ident, type, name, iso_country from airport"
+    sql += " WHERE iso_country='" + country + "'"
     print(sql)
     cursor = connection.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()
+    result.sort(key=lambda x:x[1])
     if cursor.rowcount > 0:
         for row in result:
-            print(f"{row[0]}: {row[1]} in {row[4]}, {row[3]}, {row[2]}")
+            print(f"{row[3]}, {row[1]}, {row[2]}, ICAO code: {row[0]}")
     return
 
-icao = input("Enter ICAO code: ")
-getAirportByICAO(icao)
+country = input("Enter country code: ")
+getAirportsByCountry(country)
