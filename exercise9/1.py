@@ -7,7 +7,7 @@ class Car:
     def acceleration(self, acceleration):
             self.currentSpeed = min(max(self.currentSpeed + acceleration, 0), self.maxSpeed)
 
-tesla =Car("ABC-123", 142)
+tesla = Car("ABC-123", 142)
 print()
-print(f'Registration number of {tesla.regNum}, maximum speed is{tesla.maxSpeed} km/h'
+print(f'Registration number of {tesla.regNum}, maximum speed is {tesla.maxSpeed} km/h '
       f'Current speed is {tesla.currentSpeed} km/h, travel distance is {tesla.travDis}')
